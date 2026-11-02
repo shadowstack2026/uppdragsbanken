@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IntegritetRouteImport } from './routes/integritet'
 import { Route as LamnaUppdragRouteImport } from './routes/lamna-uppdrag'
+import { Route as LasMerRouteImport } from './routes/las-mer'
 import { Route as UppdragIndexRouteImport } from './routes/uppdrag.index'
 import { Route as UppdragIdRouteImport } from './routes/uppdrag.$id'
 
@@ -36,6 +37,11 @@ const LamnaUppdragRoute = LamnaUppdragRouteImport.update({
   path: '/lamna-uppdrag',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LasMerRoute = LasMerRouteImport.update({
+  id: '/las-mer',
+  path: '/las-mer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UppdragIndexRoute = UppdragIndexRouteImport.update({
   id: '/uppdrag/',
   path: '/uppdrag/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/integritet': typeof IntegritetRoute
   '/lamna-uppdrag': typeof LamnaUppdragRoute
+  '/las-mer': typeof LasMerRoute
   '/uppdrag/$id': typeof UppdragIdRoute
   '/uppdrag/': typeof UppdragIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/integritet': typeof IntegritetRoute
   '/lamna-uppdrag': typeof LamnaUppdragRoute
+  '/las-mer': typeof LasMerRoute
   '/uppdrag/$id': typeof UppdragIdRoute
   '/uppdrag': typeof UppdragIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/integritet': typeof IntegritetRoute
   '/lamna-uppdrag': typeof LamnaUppdragRoute
+  '/las-mer': typeof LasMerRoute
   '/uppdrag/$id': typeof UppdragIdRoute
   '/uppdrag/': typeof UppdragIndexRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/integritet'
     | '/lamna-uppdrag'
+    | '/las-mer'
     | '/uppdrag/$id'
     | '/uppdrag/'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/integritet'
     | '/lamna-uppdrag'
+    | '/las-mer'
     | '/uppdrag/$id'
     | '/uppdrag'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/integritet'
     | '/lamna-uppdrag'
+    | '/las-mer'
     | '/uppdrag/$id'
     | '/uppdrag/'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   IntegritetRoute: typeof IntegritetRoute
   LamnaUppdragRoute: typeof LamnaUppdragRoute
+  LasMerRoute: typeof LasMerRoute
   UppdragIdRoute: typeof UppdragIdRoute
   UppdragIndexRoute: typeof UppdragIndexRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LamnaUppdragRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/las-mer': {
+      id: '/las-mer'
+      path: '/las-mer'
+      fullPath: '/las-mer'
+      preLoaderRoute: typeof LasMerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uppdrag/': {
       id: '/uppdrag/'
       path: '/uppdrag'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   IntegritetRoute: IntegritetRoute,
   LamnaUppdragRoute: LamnaUppdragRoute,
+  LasMerRoute: LasMerRoute,
   UppdragIdRoute: UppdragIdRoute,
   UppdragIndexRoute: UppdragIndexRoute,
 }

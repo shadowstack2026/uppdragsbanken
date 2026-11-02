@@ -7,8 +7,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
-import tttSymbol from "@/assets/tech-talent-official-symbol.svg.asset.json";
-import tttWordmark from "@/assets/tech-talent-official-wordmark.svg.asset.json";
+import tttSymbol from "@/assets/tech-talent-official-symbol.svg";
+import tttWordmark from "@/assets/tech-talent-official-wordmark.svg";
 
 const linkBase = "flex min-h-11 items-center whitespace-nowrap rounded-lg px-3 py-2 text-base font-semibold text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
@@ -19,7 +19,7 @@ const siteLinks = [
 ];
 
 export function SiteHeader() {
-  const { user } = useAppAuth();
+  const { user, isAdmin } = useAppAuth();
   const qc = useQueryClient();
   const navigate = useNavigate();
   async function signOut() {
@@ -47,9 +47,11 @@ export function SiteHeader() {
           <DropdownMenuItem asChild className="px-3 py-3 text-base">
             <Link to="/lamna-uppdrag" onClick={close}>Lämna ett uppdrag</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild className="px-3 py-3 text-base">
-            <Link to="/uppdrag" onClick={close}>Se uppdrag</Link>
-          </DropdownMenuItem>
+          {isAdmin && (
+            <DropdownMenuItem asChild className="px-3 py-3 text-base">
+              <Link to="/uppdrag" onClick={close}>Se uppdrag</Link>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild className="px-3 py-3 text-base">
             <a href="mailto:info@techtraineetalent.se" onClick={close}>Kontakta oss</a>
@@ -65,8 +67,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <Link to="/" aria-label="Tech Trainee Talent – till startsidan" className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <img src={tttSymbol.url} alt="Tech Talent symbol" className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12" />
-          <img src={tttWordmark.url} alt="Tech Trainee Talent" className="h-11 w-48 max-w-full min-w-0 object-contain sm:h-12 sm:w-72 lg:w-64 xl:w-80" />
+          <img src={tttSymbol} alt="Tech Talent symbol" className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12" />
+          <img src={tttWordmark} alt="Tech Trainee Talent" className="h-11 w-48 max-w-full min-w-0 object-contain sm:h-12 sm:w-72 lg:w-64 xl:w-80" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Huvudmeny">{links}</nav>
         <Button variant="ghost" size="icon"

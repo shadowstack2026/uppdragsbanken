@@ -17,7 +17,7 @@ import { dateBounds, submitSchema } from "@/lib/validation";
 import { Field, Spinner, inputCls } from "@/components/FormField";
 import { useAppAuth } from "@/components/AuthProvider";
 import { Reveal, SuccessCheck } from "@/components/Reveal";
-import { btnPrimary, btnSecondary, eyebrow } from "@/components/buttons";
+import { btnPrimary, eyebrow } from "@/components/buttons";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 
 export const Route = createFileRoute("/lamna-uppdrag")({
@@ -110,14 +110,16 @@ function SubmitPage() {
   return (
     <section className="mx-auto max-w-3xl px-4 pb-16 pt-6 sm:pt-10">
       <PageBreadcrumbs current="Lämna ett uppdrag" />
-      <Reveal>
-        <p className={eyebrow}>För företag och föreningar</p>
-        <h1 className="mt-3 text-4xl md:text-5xl">Lämna ett uppdrag</h1>
-        <p className="mt-4 text-xl text-muted-foreground">
-          Har ert företag eller er förening ett litet digitalt uppdrag? Berätta vad ni behöver hjälp med så granskar vi er
-          förfrågan.
-        </p>
-      </Reveal>
+      {doneId === null && (
+        <Reveal>
+          <p className={eyebrow}>För företag och föreningar</p>
+          <h1 className="mt-3 text-4xl md:text-5xl">Lämna ett uppdrag</h1>
+          <p className="mt-4 text-xl text-muted-foreground">
+            Har ert företag eller er förening ett litet digitalt uppdrag? Berätta vad ni behöver hjälp med så granskar vi er
+            förfrågan.
+          </p>
+        </Reveal>
+      )}
 
       {doneId !== null ? (
         <motion.div
@@ -126,16 +128,13 @@ function SubmitPage() {
           className="mt-8 rounded-xl border border-primary/30 bg-secondary p-8 text-secondary-foreground"
         >
           <SuccessCheck />
-          <h2 className="mt-4 text-3xl">Tack! Vi har tagit emot er förfrågan.</h2>
-          <p className="mt-2 text-lg">Vi granskar ert uppdrag och hör av oss om det passar våra deltagare.</p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            {isAdmin ? (
+          <p className="mt-4 inline-block rounded-full border border-primary px-3 py-0.5 text-sm font-semibold text-primary">Mottaget</p>
+          <h1 className="mt-3 text-3xl">Tack, vi har tagit emot din förfrågan!</h1>
+          {isAdmin && (
+            <div className="mt-6">
               <Link to="/uppdrag" className={btnPrimary}>Se uppdraget i listan</Link>
-            ) : (
-              <button type="button" className={btnPrimary} onClick={() => setDoneId(null)}>Lämna ett nytt uppdrag</button>
-            )}
-            <Link to="/" className={btnSecondary}>Tillbaka till startsidan</Link>
-          </div>
+            </div>
+          )}
         </motion.div>
       ) : (
         <>

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { arrow, btnPrimary, btnSecondary, eyebrow } from "@/components/buttons";
 import { useAppAuth } from "@/components/AuthProvider";
-import samarbetePhoto from "@/assets/samarbete-photo.jpg.asset.json";
+import samarbetePhoto from "@/assets/samarbete-photo.jpg";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 
 export const Route = createFileRoute("/")({
@@ -43,8 +43,8 @@ function Index() {
             <Link to="/lamna-uppdrag" className={btnPrimary}>
               Lämna ett uppdrag <span className={arrow}>→</span>
             </Link>
-            <Link to="/uppdrag" className={btnSecondary}>
-              Se tillgängliga uppdrag
+            <Link to="/las-mer" className={btnSecondary}>
+              Läs mer
             </Link>
           </div>
         </Reveal>
@@ -90,7 +90,7 @@ function Index() {
           <Reveal delay={0.1}>
             <div className="overflow-hidden rounded-2xl ring-1 ring-primary-foreground/15 md:rounded-3xl">
               <img
-                src={samarbetePhoto.url}
+                src={samarbetePhoto}
                 alt="Studenter i Tech Talent samlade kring en dator i ett klassrum."
                 className="aspect-[4/3] w-full object-cover md:aspect-[711/428]"
               />

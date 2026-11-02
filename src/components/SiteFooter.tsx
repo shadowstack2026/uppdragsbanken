@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import tttSymbol from "@/assets/ttt-symbol.jpeg.asset.json";
+import tttSymbol from "@/assets/ttt-symbol.jpeg";
 
 export function SiteFooter() {
   return (
@@ -12,7 +12,7 @@ export function SiteFooter() {
             rel="noreferrer"
             className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-card p-2"
           >
-            <img src={tttSymbol.url} alt="Tech Trainee Talent" className="h-full w-full object-contain" />
+            <img src={tttSymbol} alt="Tech Trainee Talent" className="h-full w-full object-contain" />
           </a>
           <div className="min-w-0">
             <p className="text-lg font-bold">En del av Tech Talent</p>
